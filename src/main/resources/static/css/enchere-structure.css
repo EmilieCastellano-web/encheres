@@ -1,0 +1,190 @@
+/* Styles généraux */
+* {
+	font-family: cursive;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+header a {
+	color: black;
+	text-decoration: none;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	justify-content: space-between;
+}
+img{
+	width: auto;
+	height: 250px;
+}
+
+.top-main {
+	justify-content: unset;
+}
+
+a:hover {
+	background-color: rgba(255, 255, 0, .2);
+}
+
+div button:hover {
+	background-color: rgba(255, 255, 0, .2);
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inblockMargin {
+	display: flex;
+	justify-content: space-between;
+	margin: 0px;
+}
+
+/* En-tête */
+header {
+	display: flex;
+	justify-content: space-between;
+	text-decoration: none;
+	padding: 10px;
+}
+
+header nav a {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	text-decoration: underline;
+	color: blue;
+	font-size: 1.5em;
+	margin: 40px;
+}
+
+/* Footer */
+footer {
+	background-color: black;
+	color: white;
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+/* Barre de recherche */
+.search-bar {
+	display: flex;
+	justify-content: space-around;
+	margin: 20px;
+	margin-left: 150px;
+	margin-bottom: 100px;
+}
+
+.search-bar h2 {
+	text-align: left;
+	margin-bottom: 0px;
+}
+
+.search-bar input, .search-bar select, .search-bar button {
+	margin: 10px;
+	padding: 3px;
+	padding-right: 200px;
+	font-size: 16px;
+	font-family: cursive;
+	border: 3px solid black;
+}
+
+.search-bar input {
+	border-radius: 15px;
+}
+
+.search-bar button {
+	padding-left: clamp(50px, 10vw, 200px);
+	padding-right: clamp(50px, 10vw, 200px);
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-left: clamp(0px, 10vw, 150px);
+	margin-right: clamp(0px, 10vw, 300px);
+	display: flex;
+	justify-content: center;
+	border: 3px solid black;
+	background-color: white;
+	cursor: pointer;
+	font-family: cursive;
+	box-shadow: 5px 5px 0px rgba(0, 0, 0, 1);
+}
+
+/* Filtres*/
+.filtre {
+	display: flex;
+	flex-direction: row;
+	align-content: space-between;
+	justify-content: center;
+	text-align: left;
+}
+
+/* Liste des enchères */
+.encheres {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 150px;
+	padding-left: 200px;
+	padding-right: 200px;
+}
+
+.enchere {
+	border: 3px solid black;
+	display: flex;
+	justify-content: space-around;
+	padding-right: 140px;
+}
+
+/*Details enchere*/
+.enchereUser {
+	border: 3px solid black;
+	display: flex;
+	justify-content: center;
+	margin: 20px;
+}
+
+.enchere img {
+	margin: 15px;
+	width: 150px;
+	height: auto;
+	background: lightgray;
+	display: block;
+}
+
+.detail {
+	display: fles;
+	flex-direction: column;
+}
+
+.detail-enchere {
+	margin: 20px;
+}
+
+.detail-enchere a {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: black;
+}
+
+/*Achat*/
+.icone {
+	margin: 15px;
+	width: auto;
+	height: 20px;
+	display: block;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main>
+		<h1>Liste des enchères</h1>
+		<form class="search-bar" th:action="@{/encheres/search}" method="get">
+			<div> 
+				<h2>Filtres :</h2>
+				<input type="text" placeholder="Le nom de l'article contient" name="filtre" /> 
+				<div>
+					<label for="categorie">Catégorie : </label>
+					<select name="categorie" id="categorie">
+						<option value="0">Toutes</option>
+						<option th:each="c : ${categories}" th:text="${c.libelle}" th:value="${c.noCategorie}"></option>
+					</select>
+				</div>
+				<section class="filtre" sec:authorize="isAuthenticated()">
+					<div>
+						<div>
+							<input type="radio" name="radio" id="achats" />
+							<label for="">Achats</label>
+						</div> 
+						<div > 
+							<input type="checkbox" name="option" value="achats1" class="achats-checkbox" disabled /> 
+							<label for="">enchères ouvertes</label>
+						</div>
+						<div >
+							<input type="checkbox" name="option"value="achats2" class="achats-checkbox" disabled />
+							<label for="">mes enchères en cours</label>
+						</div>
+						<div >
+							<input type="checkbox" name="option" value="achats3" class="achats-checkbox" disabled /> 
+							<label for="">mes enchères remportées</label>
+						</div>
+					</div>
+					<div>
+						<div>
+							<input type="radio" name="radio" id="ventes" /> 
+							<label for="">Mes ventes</label>
+						</div>
+						<div>
+							<input type="checkbox" name="option" value="ventes1" class="ventes-checkbox" disabled /> 
+							<label for="">mes ventes en cours</label>
+						</div>
+						<div>
+							<input type="checkbox" name="option" value="ventes2" class="ventes-checkbox" disabled /> 
+							<label for="">ventes non débutées</label>
+						</div>
+						<div>
+							<input type="checkbox" name="option" value="ventes3" class="ventes-checkbox" disabled /> 
+							<label for="">ventes terminées</label>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="center">
+				<button class="button" type="submit">Rechercher</button>
+			</div>
+		</form>
+		<section class="encheres">
+			<div th:if="${errorMessages}">
+    			<p th:each="err : ${errorMessages}" th:text="${err}"></p>
+			</div>
+			<div class="enchere" th:each="a : ${articles}">
+				<div >
+					<img th:src="'/images/uploads/' + ${a.noArticle} + '.png'" alt="Image">
+				</div>
+				<div class="detail-enchere">
+					<a th:href="@{/encheres/detail(id=${a.noArticle})}" th:text="${a.nomArticle}"></a>
+					<p th:text="'Prix : ' + (${a.prixVente} != 0 ? ${a.prixVente} : ${a.miseAPrix})"></p>
+					<p th:if="${a.etatVente == 'pasCommencee'}" th:text="'Début de l\'enchère : ' + ${#temporals.format(a.dateDebutEncheres, 'dd/MM/yyyy HH:mm')}"></p>
+					<p th:if="${a.etatVente == 'pasCommencee' || a.etatVente == 'enCours'}" th:text="'Fin de l\'enchère : ' + ${#temporals.format(a.dateFinEncheres, 'dd/MM/yyyy HH:mm')}"></p>
+					<p th:if="${a.etatVente == 'finie'}" th:text="'Enchère finie le : ' + ${#temporals.format(a.dateFinEncheres, 'dd/MM/yyyy HH:mm')}"></p>
+					<div th:if="${userSession != null}">
+						<a th:if="${a.vendeur.noUtilisateur != userSession.noUtilisateur}" th:href="@{/profil(id=${a.vendeur.noUtilisateur})}" th:text="'Vendeur : '+${a.vendeur.pseudo}"></a>
+						<a th:if="${(a.etatVente == 'enCours' or a.etatVente == 'finie') and a.vendeur.noUtilisateur == userSession.noUtilisateur}" th:href="@{/encheres/voirEncheres(idArticle=${a.noArticle})}">Voir les enchères</a>
+						<a  th:if="${a.etatVente == 'pasCommencee' && a.vendeur.noUtilisateur == userSession.noUtilisateur}" th:href="@{/encheres/modifier(idArticle=${a.noArticle})}">Modifier</a>
+						<form th:if="${a.etatVente == 'pasCommencee' && a.vendeur.noUtilisateur == userSession.noUtilisateur}" th:action="@{/encheres/supprimer(idArticle=${a.noArticle})}" method="post">
+							<button type="submit">Supprimer </button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+	<script src="/js/script-search.js"></script>
+</body>
+</html>

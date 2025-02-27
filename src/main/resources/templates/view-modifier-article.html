@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-error.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main >
+		<form th:action="@{/encheres/modifier}" method="POST" th:object="${article}" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{noArticle}"/>
+			<h1>Modifier vente</h1>
+			<div class="cards" th:if="${#fields.hasErrors('*')}">
+				<h2>Attention : Veuillez vérifier vos champs</h2>
+			</div>
+			<ul th:if="${#fields.hasErrors('global')}">
+		  		<li th:each="err : ${#fields.errors('global')}" th:text="#{${err}}">Input is incorrect</li>
+			</ul>
+			<img th:src="'/images/uploads/' + *{noArticle} + '.png'" alt="Image">
+			<div>
+				<div>
+					<div class="inblockMargin">
+						<label for="nomArticle">Article</label>
+						<input id="nomArticle" type="text" th:field="*{nomArticle}"/>
+					</div>
+					<p class="cards" th:errors="*{nomArticle}"></p>
+				</div>
+				<div>
+					<div class="inblockMargin">
+						<label for="description">Description</label>
+						<textarea id="description" th:field="*{description}"></textarea>
+					</div>
+					<p class="cards" th:errors="*{description}"></p>
+				</div>
+				<div>
+					<div class="inblockMargin">
+						<label for="categorie">Catégorie</label>
+						<select id="categorie" th:field="*{categorieArticle}">
+							<option th:each="c : ${categories}" th:text="${c.libelle}" th:value="${c.noCategorie}"></option>
+						</select>
+					</div>
+					<p class="cards" th:errors="*{categorieArticle}"></p>
+				</div>
+				<div>
+					<div class="inblockMargin">
+						<label for="photo">Photo de l'article</label>
+						<input class="hidden-input" type="file" id="custom" name="image"/>
+						<label for="custom" class="button-upload" name ="image">UPLOADER</label>
+					</div>
+				</div>
+				<div>
+					<div class="inblockMargin">
+						<label for="miseAPrix">Mise à prix</label>
+						<input id="miseAPrix" type="number" th:field="*{miseAPrix}"/>
+					</div>
+					<p class="cards" th:errors="*{miseAPrix}"></p>
+				</div>
+				<div>
+					<div class="inblockMargin">
+						<label for="dateDebutEncheres">Début de l'enchère</label>
+						<input id="dateDebutEncheres" type="datetime-local" th:field="*{dateDebutEncheres}"/>
+					</div>
+					<p class="cards" th:errors="*{dateDebutEncheres}"></p>
+				</div>
+				<div>
+					<div class="inblockMargin">
+						<label for="dateFinEncheres">Fin de l'enchère</label>
+						<input id="dateFinEncheres" type="datetime-local" th:field="*{dateFinEncheres}"/>
+					</div>
+					<p class="cards" th:errors="*{dateFinEncheres}"></p>
+				</div>
+				<fieldset class="retrait-container">
+	    			<legend>Retrait</legend>
+		    		<div>
+						<div class="inblockMargin">
+							<label for="rue">Rue</label>
+							<input id="rue" type="text" th:field="*{lieuRetrait.rue}">
+						</div>
+						<p class="cards" th:errors="*{lieuRetrait.rue}"></p>
+					</div>
+					<div>
+						<div class="inblockMargin">
+							<label for="codepostal">Code Postal</label>
+							<input id="codepostal" type="text" th:field="*{lieuRetrait.code_postal}">
+						</div>
+						<p class="cards" th:errors="*{lieuRetrait.code_postal}"></p>
+					</div>
+					<div>
+						<div class="inblockMargin">
+							<label for="ville">Ville</label>
+							<input id="ville" type="text" th:field="*{lieuRetrait.ville}">
+						</div>
+						<p class="cards" th:errors="*{lieuRetrait.ville}"></p>
+					</div>
+				</fieldset>
+				<div class="inblockMargin">
+					<button type="submit">Enregistrer</button>
+					<a class="button" th:href="@{/encheres}">Annuler</a>
+				</div>
+			</div>
+		</form>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+</body>
+</html>

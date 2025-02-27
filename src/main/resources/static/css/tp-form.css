@@ -1,0 +1,238 @@
+.form-inscription {
+	max-width: 1500px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/*Inputs*/
+
+label {
+	display: block;
+	align-content: center;
+}
+
+input[type="text"], input[type="password"] {
+	max-height: 20px;
+	width: 200px;
+	padding: 10px;
+	margin: 10px;
+	border: 3px solid black;
+}
+
+input[type="datetime-local"] {
+	max-height: 20px;
+	width: 100px;
+	padding: 10px;
+	margin: 10px;
+	border: 3px solid black
+}
+
+input[type="number"] {
+	max-height: 20px;
+	width: 70px;
+	margin: 15px;
+	border: 3px solid black;
+}
+
+textarea, select {
+	margin: 15px;
+	border: 3px solid black;
+}
+
+.forgot-password {
+	display: block;
+	margin-top: 5px;
+}
+
+
+/*Button*/
+#button:hover {
+	background-color: rgba(255, 255, 0, .2);
+}
+
+button:hover {
+	background-color: rgba(255, 255, 0, .2);
+}
+
+button {
+	width: 160px;
+	background: white;
+	border: 3px solid black;
+	padding: 5px 10px;
+	cursor: pointer;
+	box-shadow: 2px 2px 0px black;
+	padding: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 20px;
+}
+
+.button-connexion {
+	margin: 0px;
+}
+
+.big-button {
+	width: 360px;
+	display: block;
+	align-content: center;
+	text-decoration: none;
+	margin-top: 20px;
+	color: black;
+	border: 3px solid black;
+	background: white;
+	font-size: 16px;
+	cursor: pointer;
+	box-shadow: 3px 3px 0px black;
+	padding: 20px;
+	padding-left: 95px;
+	padding-right: 95px;
+	margin-top: 80px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.button {
+	width: 100px;
+	display: flex;
+	color: black;
+	text-decoration: none;
+	justify-content: center;
+	align-content: center;
+	background: white;
+	border: 3px solid black;
+	padding: 5px 10px;
+	cursor: pointer;
+	box-shadow: 2px 2px 0px black;
+	padding: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin: 20px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.button-upload {
+	width: 100px;
+	display: flex;
+	color: black;
+	text-decoration: none;
+	justify-content: center;
+	align-content: center;
+	background: white;
+	border: 3px solid black;
+	cursor: pointer;
+	box-shadow: 2px 2px 0px black;
+	padding: 0px;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin: 20px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.button-login {
+	width: 100%;
+	display: flex;
+	color: black;
+	text-decoration: none;
+	justify-content: center;
+	background: white;
+	border: 3px solid black;
+	cursor: pointer;
+	box-shadow: 2px 2px 0px black;
+	padding: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	margin: 0px;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 70px;
+}
+
+#button {
+	margin: 15px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+/*Retrait*/
+.retrait-container {
+	border: 3px solid black;
+	width: 100%;
+	padding: 5px;
+}
+
+.retrait-container legend {
+	text-align: left;
+	font-weight: bold;
+	padding: 0 10px; /* Ajoute un peu d'espace autour du texte */
+}
+
+.options {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 30px;
+}
+
+
+
+.hidden-input {
+	display: none;
+}
+
+.inblock {
+	display: flex;
+	justify-content: space-between;
+}
+
+/*ID*/
+#idProposition {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	padding: 0px;
+}
+
+#sectionLeft {
+	align-items: unset;
+}
+
+#center {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+}
+
+#wrap {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: space-between;
+	margin-left: clamp(0px, 10vw, 150px);
+	margin-right: clamp(0px, 10vw, 150px);
+}
+
+#wrap div {
+	width: 430px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#margin {
+	margin: 10px;
+}
+
+#marginL {
+	margin-left: 20px;
+}
+
+.center-spaced {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: space-between;
+	align-items: center;
+	width: 100%;
+	max-width: 400px;
+}

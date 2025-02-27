@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main class="top-main">
+		<h1>Liste des categories</h1>
+		<section >
+			<div >
+				<a class="big-button" th:href="@{/categories/ajouter}">Ajouter une catégorie</a>
+			</div>
+			<div th:if="${errorMessages}">
+    			<p th:each="err : ${errorMessages}" th:text="${err}"></p>
+			</div>
+			<div  th:each="c : ${categories}">
+				<div id="center">
+					<div class="inblockMargin">
+						<p id="center" th:text="${c.libelle}"></p>
+						<div id="center" >
+							<div class="inblockMargin">
+								<a class="button" th:href="@{/categories/modifier(idCategorie=${c.noCategorie})}">Modifier</a>
+								<form th:action="@{/categories/supprimer(idCategorie=${c.noCategorie})}" method="post">
+									<button type="submit">Supprimer</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</section>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+</body>
+</html>

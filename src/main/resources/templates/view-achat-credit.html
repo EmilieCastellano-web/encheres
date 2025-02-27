@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-error.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main>
+		<form th:action="@{/monProfil/achatCredit}" method="post">
+			<div>
+				<div>
+					<p th:text="'Vous avez ' + ${user.credit} + ' crédit(s)'"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="achat">Combien de crédits souhaitez vous acheter ?</label>
+					<select name="achat" id="achat">
+						<option value="0">Choix</option>
+						<option value="100">100</option>
+						<option value="200">200</option>
+						<option value="300">300</option>
+						<option value="400">400</option>
+						<option value="500">500</option>
+					</select>
+				</div>
+				<div class="hidden" id="resultatContainer">
+					<p>Vous allez payer : <span id="resultat"></span> €</p>
+				</div>
+				<div class="inblockMargin" >
+					<div class="hidden" id="buttonContainer">
+						<button type="submit">Payer</button>
+					</div>
+					<a class="button" th:href="@{/monProfil}">Annuler</a>
+				</div>
+			</div>
+		</form>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+	<script src="/js/script-achat-credit.js"></script>
+</body>
+</html>

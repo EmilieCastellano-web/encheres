@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-error.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"> </header>
+	<main class="top-main" id="sectionLeft">
+		<h1 th:if="${article.etatVente} == 'PC'">
+			<span th:if="${article.acheteur.noUtilisateur} == ${userSession.noUtilisateur}" th:text="${article.acheteur.pseudo + ' a remporté l''enchère !'}"></span>
+			<span th:if="${article.acheteur.noUtilisateur} != ${userSession.noUtilisateur}" th:text="${article.acheteur.pseudo + ' a remporté l''enchère !'}"></span>
+			<span th:if="${article.prixVente} == 0">Aucune Enchère</span>
+		</h1>
+		<h1 th:if="${article.etatVente} == 'EC'">Détail vente</h1>
+		<section  class="encheres">
+			<img  th:src="'/images/uploads/' + ${article.noArticle} + '.png'" alt="Image">
+			<div class="detail" >
+				<div id="center" class="inblockMargin">
+					<h2 th:text="''+${article.nomArticle}"></h2>
+				</div >
+				<div class="inblockMargin">
+					<p>Despcription : </p>
+					<p th:text="${article.description}"></p>
+				</div>
+				<div class="inblockMargin">
+					<p>Catégorie :</p>
+					<p th:text="${article.categorieArticle.libelle}"></p>
+				</div>
+				<div class="inblockMargin">
+					<p id="center" th:if="${article.acheteur.pseudo}!=null">Meilleure offre : </p>
+					<div id="marginL" class="center">
+						<p th:if="${article.acheteur.pseudo}!=null" th:text="${article.prixVente}+' '+'pts par &nbsp;'"></p>
+						<a  th:if="${article.acheteur.pseudo}!=null" th:href="@{/profil/vendeur(id=${article.acheteur.noUtilisateur})}" th:text="${article.acheteur.pseudo}"></a>
+					</div>
+				</div>
+				<div class="inblockMargin">
+					<p>Mise à prix :</p>
+					<p th:text="${article.miseAPrix}"></p>
+				</div>
+				<div class="inblockMargin">
+					<p>Fin de l'enchère : </p>
+					<p id="marginL" th:text="${#temporals.format(article.dateFinEncheres, 'dd/MM/yyyy HH:mm')}"></p> 
+				</div> 
+				<div class="inblockMargin">
+					<p>Retrait : 	</p>
+					<div>
+						<p th:text="${article.lieuRetrait.rue}"></p>
+						<p th:text="${article.lieuRetrait.code_postal} + ' ' +${article.lieuRetrait.ville} "></p>
+					</div>
+				</div>
+				<div class="inblockMargin">
+					<p>Vendeur :</p>
+					<p th:text="${article.vendeur.pseudo}"></p>
+				</div>		
+			</div>
+		</section>
+		<form class="center" th:action="@{/encheres/creer}" method="POST">
+			<input type="hidden" name="id" th:value="${article.noArticle}" />
+			<div class="cards" th:if="${erreurs != null}">
+				<h2>Attention : Veuillez vérifier vos champs</h2>
+			</div>
+			<ul class="flex-outer" th:if="${erreurs != null}">
+				<li th:each="err : ${erreurs}" th:text="${err}">Erreur non spécifiée</li>
+			</ul>
+			<div class="inblockMargin" th:if="${article.etatVente} == 'EC' and (${article.vendeur.noUtilisateur} != ${userSession.noUtilisateur})">
+				<label for="idProposition">Ma proposition : </label>
+				<input id="idProposition" type="number" name="proposition"/>
+				<button type="submit">Enchérir</button>
+			</div>
+		</form>		
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"> </footer>
+</body>
+</html>

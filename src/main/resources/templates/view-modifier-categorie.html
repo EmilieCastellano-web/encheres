@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-error.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main >
+		<form th:action="@{/categories/modifier}" method="POST" th:object="${categorie}">
+			<input type="hidden" th:field="*{noCategorie}"/>
+			<h1>Modifier la catégorie</h1>
+			<div class="cards" th:if="${#fields.hasErrors('*')}">
+				<h2>Attention : Veuillez vérifier vos champs</h2>
+			</div>
+			<ul th:if="${#fields.hasErrors('global')}">
+		  		<li th:each="err : ${#fields.errors('global')}" th:text="#{${err}}">Input is incorrect</li>
+			</ul>
+			<div class="inblockMargin">
+				<label for="libelle">Libellé</label>
+				<input id="libelle" type="text" th:field="*{libelle}"/>
+				<p class="cards" th:errors="*{libelle}"></p>
+			</div>
+			<div class="center">
+				<button type="submit">Enregistrer</button>
+				<a class="button" th:href="@{/categories}">Annuler</a>
+			</div>
+		</form>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+</body>
+</html>

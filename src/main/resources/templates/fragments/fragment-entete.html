@@ -1,0 +1,35 @@
+<header th:fragment="entete">
+    <h1>
+        <a href="/">ENI-Enchères</a>
+    </h1>
+    <nav>
+        
+        <input type="checkbox" id="menu-toggle">
+        
+       
+        <label for="menu-toggle" class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        
+        <div  class="inblockMargin" id="menu">
+            <p sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/categories}">Catégories</a>
+            </p>
+            <p sec:authorize="hasRole('ROLE_USER')">
+                <a th:href="@{/encheres/nouvelleVente}">Nouvelle Vente</a>
+            </p>
+            <p sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">S'inscrire - Se connecter</a>
+            </p>
+            <p sec:authorize="isAuthenticated()">
+                <a th:href="@{/monProfil}">Mon profil</a>
+            </p>
+            <p sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}">Déconnexion</a>
+            </p>
+        </div>
+    </nav>
+</header>

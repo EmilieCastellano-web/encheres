@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.cards {
+	color: red;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 5px;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-error.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main>
+	<h1>Mon profil</h1>
+		<form class="form-inscription" th:action="@{/inscription}" th:object="${utilisateur}" method="POST">	
+			<div class="cards" th:if="${#fields.hasErrors('*')}">
+				<h2>Attention : Veuillez vérifier vos champs</h2>
+			</div>	
+			<p th:if="${#fields.hasErrors('*')}">Erreur de Saisie</p>
+			<ul th:if="${#fields.hasErrors('global')}">
+  				<li th:each="err : ${#fields.errors('global')}" th:text="#{${err}}">Incorrect</li>
+			</ul>
+			<div id="wrap">
+				<div>
+					<div class ="inblockMargin">
+						<label for="idPseudo">Pseudo : </label>
+						<input id="idPseudo" type="text" th:field="*{pseudo}"/>
+					</div>
+					<p class="cards" th:errors="*{pseudo}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idPrenom">Prénom : </label>
+						<input id="idPrenom" type="text" th:field="*{prenom}"/>
+					</div>
+					<p class="cards" th:errors="*{prenom}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idNom">Nom : </label>
+						<input id="idNom" type="text" name="nom" th:field="*{nom}"/>
+					</div>
+					<p class="cards" th:errors="*{nom}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idEmail">Email : </label>
+						<input id="idEmail" type="text" th:field="*{email}"/>
+					</div>
+					<p class="cards" th:errors="*{email}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idTelephone">Téléphone : </label>
+						<input id="idTelephone" type="text" th:field="*{telephone}"/>
+					</div>
+					<p class="cards" th:errors="*{telephone}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idRue">Rue : </label>
+						<input id="idRue" type="text" th:field="*{rue}"/>
+					</div>
+					<p class="cards" th:errors="*{rue}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idPostal">Code Postal : </label>
+						<input id="idPostal" type="text" th:field="*{codePostal}"/>
+					</div>
+					<p class="cards" th:errors="*{codePostal}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idVille">Ville : </label>
+						<input id="idVille" type="text" th:field="*{ville}"/>
+					</div>
+					<p class="cards" th:errors="*{ville}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idMotDePasse">Mot de passe : </label>
+						<input id="idMotDePasse" type="password" th:field="*{motDePasse}"/>
+					</div>
+					<p class="cards" th:errors="*{motDePasse}"></p>
+				</div>
+				<div>
+					<div class ="inblockMargin">
+						<label for="idMotDePasseConfirm">Confirmation : </label>
+						<input id="idMotDePasseConfirm" type="password" name="PasswordConfirm"/>
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<button type="submit">Créer</button>
+				<a class="button" th:href="@{/login}">Annuler</a>
+			</div>
+		</form>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"> </footer>
+</body>
+</html>

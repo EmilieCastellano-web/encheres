@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main>
+		<form action="">
+			<div>
+				<div class="inblockMargin">
+					<label for="idPseudo">Pseudo : </label>
+					<p th:text="${utilisateur.pseudo}"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="idNom">Nom : </label>
+					<p th:text="${utilisateur.nom}"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="idNom">Prénom : </label>
+					<p th:text="${utilisateur.prenom}"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="idEmail">Email : </label>
+					<p id="marginL" th:text="${utilisateur.email}"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="idTelephone">Téléphone : </label>
+					<p th:text="${utilisateur.telephone}"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="idRue">Rue : </label>
+					<p th:text="${utilisateur.rue}"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="idPostal">Code Postal : </label>
+					<p th:text="${utilisateur.codePostal}"></p>
+				</div>
+				<div class="inblockMargin">
+					<label for="idVille">Ville : </label>
+					<p th:text="${utilisateur.ville}"></p>
+				</div>
+			</div>
+		</form>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+</body>
+</html>

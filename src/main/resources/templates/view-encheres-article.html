@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-error.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>
+<body>
+	<header th:replace="~{fragments/fragment-entete :: entete}"></header>
+	<main class="top-main">
+		<h1>Liste des enchères de l'article</h1>
+		<section >
+			<div  class="enchereUser"  th:each="e : ${encheres}">
+				<div class="detail-enchere">
+					<div class="center">
+						<p th:text="${e.montant_enchere} + ' par &nbsp;'"></p>
+						<a th:text="${e.utilisateur.pseudo}" th:href="@{/profil(id=${e.utilisateur.noUtilisateur})}"></a>
+					</div>
+					<p th:text="'Date de l\'enchère : ' + ${#temporals.format(e.dateEnchère, 'dd/MM/yyyy HH:mm')}"></p>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+</body>
+</html>

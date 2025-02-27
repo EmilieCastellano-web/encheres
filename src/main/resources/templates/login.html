@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Enchères</title>
+	<link rel="stylesheet" th:href="@{/css/enchere-structure.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-form.css}" />
+	<link rel="stylesheet" th:href="@{/css/tp-error.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" />
+</head>			
+<body> 
+	<header th:replace="~{fragments/fragment-entete :: entete}">
+	</header>
+	<main>
+		<form th:action="@{/login}" method="POST">
+			<p th:if="${param.error}">Mail ou mot de passe invalide</p>
+			<div class="inblock">
+				<label for="idpseudo">Identifiant :</label> 
+				<input id="idpseudo" type="text" name="pseudo" />
+			</div>
+			<div class="inblock">
+				<label for="idPassword">Mot de passe :</label> 
+				<input id="idPassword" type="password" name="mot_de_passe" />
+			</div>	
+			<div class="options">
+				<button class="button-connexion" type="submit">Connexion</button>	
+				<section id="margin">	
+					<div class="inblockMargin">
+						<input type="checkbox" id="rememberMe" name="remember-me" />
+						<label for="rememberMe">Se souvenir de moi : </label>
+					</div>
+					<a class="forgot-password" th:href="@{/forgotPassword}">Mot de passe oublié</a>
+				</section>
+			</div>	
+			<div class="center">
+				<a class="button-login" th:href="@{/inscription}">Créer un compte</a>
+			</div>		
+		</form>	
+	</main>
+	<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+</body>
+</html>
